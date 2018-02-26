@@ -18,14 +18,20 @@ class AddToCart extends Component {
       width: 90,
     }
 
-    const {inCart} = this.props
+    const {id, inCart, handleDecreaseClick, handleIncreaseClick} = this.props
 
     if (this.props.inCart > 0) {
       return (
         <div>
-          <button style={ changeButtonStyle }> - </button>
+          <button
+            onClick={this.props.handleDecreaseClick}
+            style={ changeButtonStyle }> - </button>
+
           <button style={ inBagStyle }>{inCart} in bag</button>
-          <button style={ changeButtonStyle }> + </button>
+
+          <button
+            onClick={this.props.handleIncreaseClick}
+            style={ changeButtonStyle }> + </button>
         </div>
       )
     } else {
@@ -90,7 +96,11 @@ class Item extends Component {
       <div style={ style }>
         <ItemImage imgSrc={imgSrc} />
         <ItemInfo name={name} quantity={quantity} unit={unit} price={price} />
-        <AddToCart inCart={inCart} />
+        <AddToCart
+          id={this.props.id}
+          inCart={inCart}
+          handleDecreaseClick={this.props.handleDecreaseClick}
+          handleIncreaseClick={this.props.handleIncreaseClick} />
       </div>
     )
   }

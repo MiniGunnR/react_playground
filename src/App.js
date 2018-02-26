@@ -8,25 +8,48 @@ class App extends Component {
   render() {
     const items = [
       {
+        id: 1,
         name: 'Item One',
-        inCart: 2,
         quantity: 1,
         unit: 'kg',
         price: 50,
       },
       {
+        id: 2,
         name: 'Item Two',
-        inCart: 0,
         quantity: 1,
         unit: 'dozen',
         price: 100,
       },
     ]
-    
+
+    const handleDecreaseClick = (event) => {
+      let cart = {...this.state.cart}
+      cart[2] = cart[2] - 1
+      this.setState({cart})
+    }
+
+    const handleIncreaseClick = (event) => {
+      let cart = {...this.state.cart}
+      cart[2] = cart[2] + 1
+      this.setState({cart})
+    }
+
+    const comps = []
+    items.forEach((item) => {
+      comps.push(<Item
+                    id={item.id}
+                    name={item.name}
+                    inCart={this.state.cart[item.id]}
+                    quantity={item.quantity}
+                    price={item.price}
+                    handleDecreaseClick={handleDecreaseClick}
+                    handleIncreaseClick={handleIncreaseClick} />)
+    })
+
     return (
       <div>
-        <Item name='Item One' inCart={this.state.cart[1]} quantity={1} price={50} />
-        <Item name='Item Two' inCart={this.state.cart[2]} quantity={1} price={50} />
+        {comps}
       </div>
     )
   }
