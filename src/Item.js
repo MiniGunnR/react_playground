@@ -24,7 +24,7 @@ class AddToCart extends Component {
       return (
         <div>
           <button
-            onClick={this.props.handleDecreaseClick}
+            onClick={this.props.handleDecreaseClick(id)}
             style={ changeButtonStyle }> - </button>
 
           <button style={ inBagStyle }>{inCart} in bag</button>

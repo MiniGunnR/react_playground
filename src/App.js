@@ -23,7 +23,7 @@ class App extends Component {
       },
     ]
 
-    const handleDecreaseClick = (event) => {
+    const handleDecreaseClick = (event, id) => {
       let cart = {...this.state.cart}
       cart[2] = cart[2] - 1
       this.setState({cart})
