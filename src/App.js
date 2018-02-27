@@ -58,7 +58,6 @@ class App extends Component {
                     handleIncreaseClick={handleIncreaseClick}
                     key={item.id} />)
     })
-    console.log(this.state.cart)
 
     return (
       <div>
