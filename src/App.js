@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Item from './Item.js';
 
 
 class App extends Component {
-  state = {cart: {2: 4}}
+  state = {cart: {}}
   render() {
     const items = [
       {
@@ -21,18 +20,30 @@ class App extends Component {
         unit: 'dozen',
         price: 100,
       },
+      {
+        id: 3,
+        name: 'Item Three',
+        quantity: 1,
+        unit: 'dozen',
+        price: 75,
+      },
     ]
 
-    const handleDecreaseClick = (event, id) => {
+    const handleDecreaseClick = (id, e) => {
       let cart = {...this.state.cart}
-      cart[2] = cart[2] - 1
+      if (cart[id] === 1) {
+        delete cart[id]
+      } else {
+        cart[id] = cart[id] - 1
+      }
       this.setState({cart})
     }
 
-    const handleIncreaseClick = (event) => {
+    const handleIncreaseClick = (id, e) => {
       let cart = {...this.state.cart}
-      cart[2] = cart[2] + 1
+      cart[id] = (cart[id] || 0) + 1
       this.setState({cart})
+
     }
 
     const comps = []
@@ -44,8 +55,10 @@ class App extends Component {
                     quantity={item.quantity}
                     price={item.price}
                     handleDecreaseClick={handleDecreaseClick}
-                    handleIncreaseClick={handleIncreaseClick} />)
+                    handleIncreaseClick={handleIncreaseClick}
+                    key={item.id} />)
     })
+    console.log(this.state.cart)
 
     return (
       <div>

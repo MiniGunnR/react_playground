@@ -24,20 +24,26 @@ class AddToCart extends Component {
       return (
         <div>
           <button
-            onClick={this.props.handleDecreaseClick(id)}
+            id={id}
+            onClick={() => {this.props.handleDecreaseClick(id)}}
             style={ changeButtonStyle }> - </button>
 
-          <button style={ inBagStyle }>{inCart} in bag</button>
+          <button
+            onClick={() => {this.props.handleIncreaseClick(id)}}
+            style={ inBagStyle }>{inCart} in bag</button>
 
           <button
-            onClick={this.props.handleIncreaseClick}
+            id={id}
+            onClick={() => {this.props.handleIncreaseClick(id)}}
             style={ changeButtonStyle }> + </button>
         </div>
       )
     } else {
       return (
         <div>
-          <button style={ atc_style }>Add to Cart</button>
+          <button
+            onClick={() => {this.props.handleIncreaseClick(id)}}
+            style={ atc_style }>Add to Cart</button>
         </div>
       )
     }
@@ -70,7 +76,7 @@ class ItemImage extends Component {
 
     return (
       <div>
-        <img src={imgSrc}/>
+        <img src={imgSrc} alt="Item"/>
       </div>
     )
   }
