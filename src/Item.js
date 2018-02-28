@@ -29,13 +29,13 @@ class AddToCart extends Component {
 
           <button
             color="primary"
-            onClick={() => {handleIncreaseClick(id)}}
+            onClick={(e) => {handleIncreaseClick(id, price, e)}}
             style={ inBagStyle }>{inCart} in bag</button>
 
           <button
             color="primary"
             id={id}
-            onClick={() => {handleIncreaseClick(id)}}
+            onClick={(e) => {handleIncreaseClick(id, price, e)}}
             style={ changeButtonStyle }> + </button>
         </div>
       )
@@ -98,14 +98,15 @@ class Item extends Component {
       marginTop: 10,
     }
 
-    const {imgSrc, name, quantity, unit, price, inCart} = this.props
+    const {id, imgSrc, name, quantity, unit, price, inCart} = this.props
 
     return (
       <div style={ style }>
         <ItemImage imgSrc={imgSrc} />
         <ItemInfo name={name} quantity={quantity} unit={unit} price={price} />
         <AddToCart
-          id={this.props.id}
+          id={id}
+          price={price}
           inCart={inCart}
           handleDecreaseClick={this.props.handleDecreaseClick}
           handleIncreaseClick={this.props.handleIncreaseClick} />

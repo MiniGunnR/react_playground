@@ -7,7 +7,7 @@ import Item from './Item.js';
 class App extends Component {
   state = {cart: {}, total_items: 0, total_price: 0}
   render() {
-    console.log(this.state.cart)
+    console.log(this.state.cart, this.state.total_price)
 
     const items = [
       {
@@ -33,7 +33,7 @@ class App extends Component {
       },
     ]
 
-    const handleDecreaseClick = (id, e) => {
+    const handleDecreaseClick = (id, price) => (e) => {
       let cart = {...this.state.cart}
       if (cart[id] === 1) {
         delete cart[id]
@@ -41,14 +41,16 @@ class App extends Component {
         cart[id] = cart[id] - 1
       }
       let total_items = Object.keys(cart).length
-      this.setState({cart, total_items})
+      let total_price = this.state.total_price - Number(price)
+      this.setState({cart, total_items, total_price})
     }
 
-    const handleIncreaseClick = (id, e) => {
+    const handleIncreaseClick = (id, price) => (e) => {
       let cart = {...this.state.cart}
       cart[id] = (cart[id] || 0) + 1
       let total_items = Object.keys(cart).length
-      this.setState({cart, total_items})
+      let total_price = this.state.total_price + Number(price)
+      this.setState({cart, total_items, total_price})
     }
 
     const comps = []
@@ -60,8 +62,8 @@ class App extends Component {
                     quantity={item.quantity}
                     unit={item.unit}
                     price={item.price}
-                    handleDecreaseClick={handleDecreaseClick}
-                    handleIncreaseClick={handleIncreaseClick}
+                    handleDecreaseClick={handleDecreaseClick(item.id, item.price)}
+                    handleIncreaseClick={handleIncreaseClick(item.id, item.price)}
                     key={item.id} />)
     })
 
