@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
+import Appbar from 'muicss/lib/react/appbar';
 
 
 class AddToCart extends Component {
   render() {
     const atc_style = {
-      color: 'red',
       width: 150,
     }
 
     const changeButtonStyle = {
-      color: 'red',
       width: 30,
     }
 
     const inBagStyle = {
-      color: 'red',
       width: 90,
     }
 
@@ -24,15 +22,18 @@ class AddToCart extends Component {
       return (
         <div>
           <button
+            color="primary"
             id={id}
             onClick={() => {this.props.handleDecreaseClick(id)}}
             style={ changeButtonStyle }> - </button>
 
           <button
+            color="primary"
             onClick={() => {this.props.handleIncreaseClick(id)}}
             style={ inBagStyle }>{inCart} in bag</button>
 
           <button
+            color="primary"
             id={id}
             onClick={() => {this.props.handleIncreaseClick(id)}}
             style={ changeButtonStyle }> + </button>
@@ -42,6 +43,7 @@ class AddToCart extends Component {
       return (
         <div>
           <button
+            color="primary"
             onClick={() => {this.props.handleIncreaseClick(id)}}
             style={ atc_style }>Add to Cart</button>
         </div>
