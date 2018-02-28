@@ -5,8 +5,10 @@ import Item from './Item.js';
 
 
 class App extends Component {
-  state = {cart: {}}
+  state = {cart: {}, total_items: 0, total_price: 0}
   render() {
+    console.log(this.state.cart)
+
     const items = [
       {
         id: 1,
@@ -38,14 +40,15 @@ class App extends Component {
       } else {
         cart[id] = cart[id] - 1
       }
-      this.setState({cart})
+      let total_items = Object.keys(cart).length
+      this.setState({cart, total_items})
     }
 
     const handleIncreaseClick = (id, e) => {
       let cart = {...this.state.cart}
       cart[id] = (cart[id] || 0) + 1
-      this.setState({cart})
-
+      let total_items = Object.keys(cart).length
+      this.setState({cart, total_items})
     }
 
     const comps = []
@@ -55,6 +58,7 @@ class App extends Component {
                     name={item.name}
                     inCart={this.state.cart[item.id]}
                     quantity={item.quantity}
+                    unit={item.unit}
                     price={item.price}
                     handleDecreaseClick={handleDecreaseClick}
                     handleIncreaseClick={handleIncreaseClick}
@@ -84,13 +88,21 @@ class App extends Component {
     const smallCartTopStyle = {
       backgroundColor: 'white',
       height: 50,
+      // * * *
       opacity: 0.9,
+      textAlign: 'center',
+      lineHeight: 1.8,
+      fontWeight: 'bold',
     }
 
     const smallCartBottomStyle = {
       backgroundColor: 'coral',
       height: 25,
+      // * * *
       opacity: 0.9,
+      textAlign: 'center',
+      lineHeight: 1.8,
+      fontWeight: 'bold',
     }
 
     return (
@@ -116,12 +128,13 @@ class App extends Component {
             <div
               id="small_cart_top"
               style={ smallCartTopStyle}>
-                0 ITEMS
+                ICON <br/>
+                {this.state.total_items} ITEMS
             </div>
             <div
               id="small_cart_bottom"
               style={ smallCartBottomStyle }>
-              ৳ 100
+              ৳ {this.state.total_price}
             </div>
         </div>
       </div>
