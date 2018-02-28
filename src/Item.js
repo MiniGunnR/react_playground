@@ -16,7 +16,7 @@ class AddToCart extends Component {
       width: 90,
     }
 
-    const {id, inCart, handleDecreaseClick, handleIncreaseClick} = this.props
+    const {id, price, inCart, handleDecreaseClick, handleIncreaseClick} = this.props
 
     if (this.props.inCart > 0) {
       return (
@@ -24,18 +24,18 @@ class AddToCart extends Component {
           <button
             color="primary"
             id={id}
-            onClick={() => {this.props.handleDecreaseClick(id)}}
+            onClick={() => {handleDecreaseClick(id)}}
             style={ changeButtonStyle }> - </button>
 
           <button
             color="primary"
-            onClick={() => {this.props.handleIncreaseClick(id)}}
+            onClick={() => {handleIncreaseClick(id)}}
             style={ inBagStyle }>{inCart} in bag</button>
 
           <button
             color="primary"
             id={id}
-            onClick={() => {this.props.handleIncreaseClick(id)}}
+            onClick={() => {handleIncreaseClick(id)}}
             style={ changeButtonStyle }> + </button>
         </div>
       )
@@ -44,7 +44,7 @@ class AddToCart extends Component {
         <div>
           <button
             color="primary"
-            onClick={() => {this.props.handleIncreaseClick(id)}}
+            onClick={() => {handleIncreaseClick(id)}}
             style={ atc_style }>Add to Cart</button>
         </div>
       )
