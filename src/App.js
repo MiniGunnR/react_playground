@@ -4,6 +4,23 @@ import Appbar from 'muicss/lib/react/appbar';
 import Item from './Item.js';
 
 
+class SideLink extends Component {
+  handleClick = (e) => {
+    alert(e.target.id)
+  }
+
+  render() {
+    return (
+      <div>
+        <p>
+          <a href="https://www.google.com" id={this.props.name}>{this.props.name}</a>
+        </p>
+      </div>
+    )
+  }
+}
+
+
 class App extends Component {
   state = {cart: {}, total_items: 0, total_price: 0}
   render() {
@@ -120,7 +137,11 @@ class App extends Component {
           </table>
         </Appbar>
 
-        <div style={ sidebarStyle }></div>
+        <div style={ sidebarStyle }>
+          <SideLink name="KG"/>
+          <SideLink name="Dozen"/>
+          <SideLink name="All"/>
+        </div>
 
         {comps}
 
